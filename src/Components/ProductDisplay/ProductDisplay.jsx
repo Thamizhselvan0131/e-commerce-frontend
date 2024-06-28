@@ -3,6 +3,7 @@ import "./ProductDisplay.css";
 import star_iconn from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
+const apiUrl=import.meta.env.VITE_API_URL
 
 
 const ProductDisplay = (props) => {
@@ -11,7 +12,7 @@ const ProductDisplay = (props) => {
   const image = product?.image
   ? product.image.replace(
       "http://localhost:4000/images/",
-      "http://192.168.200.225:4000/images/"
+      `${apiUrl}/images/`
     )
   : "";
   return (

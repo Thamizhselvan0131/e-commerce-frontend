@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
 export const ShopContext = createContext(null);
+const apiUrl=import.meta.env.VITE_API_URL
 
 const ShopContextProvider = (props) => {
   const [all_product, setAll_Product] = useState([]);
@@ -10,7 +11,7 @@ const ShopContextProvider = (props) => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://192.168.200.225:4000/api/v1/products"
+          `${apiUrl}/api/v1/products`
         );
         const data = await response.json();
         setAll_Product(data.data.products);
@@ -23,7 +24,7 @@ const ShopContextProvider = (props) => {
       if (localStorage.getItem("auth-token")) {
         try {
           const response = await fetch(
-            "http://192.168.200.225:4000/api/v1/cart",
+            `${apiUrl}/api/v1/cart`,
             {
               headers: {
                 "auth-token": localStorage.getItem("auth-token"),
@@ -46,7 +47,7 @@ const ShopContextProvider = (props) => {
     if (localStorage.getItem("auth-token")) {
       try {
         const response = await fetch(
-          "http://192.168.200.225:4000/api/v1/cart/add",
+          `${apiUrl}/api/v1/cart/add`,
           {
             method: "POST",
             headers: {
@@ -71,7 +72,7 @@ const ShopContextProvider = (props) => {
     if (localStorage.getItem("auth-token")) {
       try {
         const response = await fetch(
-          `http://192.168.200.225:4000/api/v1/cart/remove/${itemId}`,
+          `${apiUrl}/api/v1/cart/remove/${itemId}`,
           {
             method: "DELETE",
             headers: {

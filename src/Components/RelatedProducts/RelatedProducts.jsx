@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./RelatedProducts.css";
 import data_product from "../Assets/data";
 import {Item} from "../Item/Item";
+const apiUrl=import.meta.env.VITE_API_URL
 
 export const RelatedProducts = () => {
   const [new_collection, setNew_collection] = useState([]);
   useEffect(() => {
-    fetch("http://192.168.200.225:4000/api/v1/products/popularinwomen")
+    fetch(`${apiUrl}/api/v1/products/popularinwomen`)
       .then((response) => response.json())
       .then((data) => setNew_collection(data.data.products));
   },[]);
@@ -19,7 +20,7 @@ export const RelatedProducts = () => {
         {new_collection.map((item, i) => {
            const image = item.image.replace(
             "http://localhost:4000/images/",
-            "http://192.168.200.225:4000/images/"
+            `${apiUrl}/images/`
           );
           return (
             <Item

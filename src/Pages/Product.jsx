@@ -5,13 +5,14 @@ import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 import { DescriptionBox } from "../Components/DescriptionBox/DescriptionBox";
 import { RelatedProducts } from "../Components/RelatedProducts/RelatedProducts";
 import { ShopContext } from "../Context/ShopContext";
+const apiUrl=import.meta.env.VITE_API_URL
 
 const product = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    fetch(`http://192.168.200.225:4000/api/v1/products/${productId}`)
+    fetch(`${apiUrl}/api/v1/products/${productId}`)
       .then((response) => response.json())
       .then((data) => {
         setProduct(data.data.product);

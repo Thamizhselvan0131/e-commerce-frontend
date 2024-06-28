@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./NewCollections.css";
 import { Item } from "../Item/Item";
+const apiUrl=import.meta.env.VITE_API_URL
 
 export const NewCollections = () => {
   const [new_collection, setNew_collection] = useState([]);
   useEffect(() => {
-    fetch("http://192.168.200.225:4000/api/v1/products/newcollections")
+    fetch(`${apiUrl}/api/v1/products/newcollections`)
       .then((response) => response.json())
       .then((data) => setNew_collection(data.data.products));
   },[]);
@@ -18,7 +19,7 @@ export const NewCollections = () => {
         {new_collection.map((item, i) => {
            const image = item.image.replace(
             "http://localhost:4000/images/",
-            "http://192.168.200.225:4000/images/"
+            `${apiUrl}/images/`
           );
           return (
             <Item

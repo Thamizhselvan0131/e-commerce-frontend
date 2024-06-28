@@ -3,6 +3,7 @@ import "./CSS/ShopCategory.css";
 import dropdown_icon from "../Components/Assets/dropdown_icon.png";
 import { Item } from "../Components/Item/Item";
 import { ShopContext } from "../Context/ShopContext";
+const apiUrl=import.meta.env.VITE_API_URL
 
 const ShopCategory = (props) => {
   const { all_product } = useContext(ShopContext);
@@ -22,7 +23,7 @@ const ShopCategory = (props) => {
           if (props.category === item.category) {
             const image = item.image.replace(
               "http://localhost:4000/images/",
-              "http://192.168.200.225:4000/images/"
+              `${apiUrl}/images/`
             );
             return (
               <Item

@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import "./CartItems.css";
 import remove_icon from "../Assets/cart_cross_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
- 
+const apiUrl = import.meta.env.VITE_API_URL;
 export const CartItems = () => {
-  const { getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
- 
+  const { getTotalCartAmount, all_product, cartItems, removeFromCart } =
+    useContext(ShopContext);
+
   return (
     <div className="cartitems">
       <div className="cartitems-format-main">
@@ -22,7 +23,7 @@ export const CartItems = () => {
         if (product) {
           const image = product.image.replace(
             "http://localhost:4000/images/",
-            "http://192.168.200.225:4000/images/"
+            `${apiUrl}/images/`
           );
           return (
             <div key={cartItem._id}>
@@ -65,7 +66,7 @@ export const CartItems = () => {
               <h3>Total</h3>
               <h3>${getTotalCartAmount()}</h3>
             </div>
- 
+
             <button>PROCEED TO CHECKOUT</button>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/LoginSignup.css";
+const apiUrl=import.meta.env.VITE_API_URL
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
@@ -13,7 +14,7 @@ const LoginSignup = () => {
   };
   const login = async () => {
     let responseData;
-    await fetch("http://192.168.200.225:4000/api/v1/login", {
+    await fetch(`${apiUrl}/api/v1/login`, {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -32,7 +33,7 @@ const LoginSignup = () => {
   };
   const signup = async () => {
     let responseData;
-    await fetch("http://192.168.200.225:4000/api/v1/signup", {
+    await fetch(`${apiUrl}/api/v1/signup`, {
       method: "POST",
       headers: {
         Accept: "application/form-data",
