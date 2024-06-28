@@ -13,21 +13,42 @@ const LoginSignup = () => {
   };
   const login = async () => {
     console.log("Login Function Executed", formData);
+    let responseData;
+    await fetch("http://192.168.200.225:4000/api/v1/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/form-data",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => (responseData = data));
+    if (responseData.success) {
+      localStorage.setItem("auth-token", responseData.token);
+      window.location.replace("/");
+    } else {
+      alert(responseData.message);
+    }
   };
   const signup = async () => {
     console.log("Signup Function Executed", formData);
     let responseData;
-    await fetch("http://localhost:4000/signup", {
-      method: {
-        Accept: "application/from-data",
+    await fetch("http://192.168.200.225:4000/api/v1/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/form-data",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-
-    }).then((response)=> response.json()).then((data)=>responseData=data)
-    if(responseData.success){
-      localStorage.setItem('auth-token',responseData.token);
+    })
+      .then((response) => response.json())
+      .then((data) => (responseData = data));
+    if (responseData.success) {
+      localStorage.setItem("auth-token", responseData.token);
       window.location.replace("/");
+    } else {
+      alert(responseData.message);
     }
   };
   return (
