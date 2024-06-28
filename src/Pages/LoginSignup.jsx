@@ -12,7 +12,6 @@ const LoginSignup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const login = async () => {
-    console.log("Login Function Executed", formData);
     let responseData;
     await fetch("http://192.168.200.225:4000/api/v1/login", {
       method: "POST",
@@ -32,7 +31,6 @@ const LoginSignup = () => {
     }
   };
   const signup = async () => {
-    console.log("Signup Function Executed", formData);
     let responseData;
     await fetch("http://192.168.200.225:4000/api/v1/signup", {
       method: "POST",

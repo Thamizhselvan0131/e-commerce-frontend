@@ -17,24 +17,27 @@ export const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {all_product.map((e) => {
-        if (cartItems[e.id] > 0) {
+      {cartItems.map((cartItem) => {
+        const product = all_product.find((p) => p._id === cartItem.product._id);
+        if (product) {
+          const image = product.image.replace(
+            "http://localhost:4000/images/",
+            "http://192.168.200.225:4000/images/"
+          );
           return (
-            <div key={e.id}>
+            <div key={cartItem._id}>
               <div className="cartitems-format cartitems-format-main">
-                <img src={e.image} alt="" className="carticon-product-icon" />
-                <p>{e.name}</p>
-                <p>${e.new_price}</p>
+                <img src={image} alt="" className="carticon-product-icon" />
+                <p>{product.name}</p>
+                <p>${product.new_price}</p>
                 <button className="cartitems-quantity">
-                  {cartItems[e.id]}
+                  {cartItem.quantity}
                 </button>
-                <p>${e.new_price * cartItems[e.id]}</p>
+                <p>${product.new_price * cartItem.quantity}</p>
                 <img
                   className="cartitems-remove-icon"
                   src={remove_icon}
-                  onClick={() => {
-                    removeFromCart(e.id);
-                  }}
+                  onClick={() => removeFromCart(cartItem._id)}
                   alt=""
                 />
               </div>

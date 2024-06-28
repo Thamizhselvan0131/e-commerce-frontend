@@ -7,10 +7,7 @@ import { RelatedProducts } from "../Components/RelatedProducts/RelatedProducts";
 import { ShopContext } from "../Context/ShopContext";
 
 const product = () => {
-  // const { all_product } = useContext(ShopContext);
   const { productId } = useParams();
-  console.log(productId);
-  // const product = all_product.find((e)=> e.id === Number(productId));
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
