@@ -8,18 +8,23 @@ import { ShopContext } from "../../Context/ShopContext";
 const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
-
+  const image = product?.image
+  ? product.image.replace(
+      "http://localhost:4000/images/",
+      "http://192.168.200.225:4000/images/"
+    )
+  : "";
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
         <div className="productdisplay-img-list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={image} alt="" />
+          <img src={image} alt="" />
+          <img src={image} alt="" />
+          <img src={image} alt="" />
         </div>
         <div className="productdisplay-img">
-          <img className="productdisplay-main-img" src={product.image} alt="" />
+          <img className="productdisplay-main-img" src={image} alt="" />
         </div>
       </div>
       <div className="productdisplay-right">
@@ -63,7 +68,7 @@ const ProductDisplay = (props) => {
           ADD TO CART
         </button>
         <p className="productdisplay-right-category">
-          <span>Category :</span>Women, T-Shirt, Crop Top
+          <span>Category :</span>{product.category}
         </p>
         <p className="productdisplay-right-category">
           <span>Tags :</span>Modern, Latest
